@@ -55,10 +55,13 @@ public class MainActivity extends AppCompatActivity {
             try {
                 FileInputStream fileInputStream = new FileInputStream(file);
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
-                String s = bufferedReader.readLine();
-                String[] strings = s.split("-");
-                editText.setText(strings[0]);
-                editText2.setText(strings[1]);
+                String name = bufferedReader.readLine();
+                String pwd = bufferedReader.readLine();
+
+                //String s = bufferedReader.readLine();
+                //String[] strings = s.split("\n");
+                editText.setText(name);
+                editText2.setText(pwd);
                 fileInputStream.close();
 
 
@@ -86,14 +89,15 @@ public class MainActivity extends AppCompatActivity {
                     //public String toString();
                    // this.toString()
                     String name= text.toString();
-                    
+
+
                     String pwd= editText2.getText().toString();
                         if(TextUtils.isEmpty(name) && TextUtils.isEmpty(pwd)){
                             fileOutputStream.close();
                              Toast.makeText(this,"用户名密码不能为空",Toast.LENGTH_LONG).show();
                             return ;
                         }
-                        fileOutputStream.write((name+"-"+pwd).getBytes());
+                        fileOutputStream.write((name+"\n"+pwd).getBytes());
                         fileOutputStream.close();
 
 
